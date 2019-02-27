@@ -10,7 +10,7 @@ namespace OFXParser.Test
         [TestMethod]
         public void TestMethod1()
         {
-            Extract extraxt = OFXParser.Parser.GetExtract("E:\\extract.ofx", new ParserSettings());
+            Extract extraxt = OFXParser.Parser.GetExtract("c:\\tempo\\exemplo02.ofx", new ParserSettings());
         }
     }
 }
