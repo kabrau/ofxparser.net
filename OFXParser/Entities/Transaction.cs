@@ -8,7 +8,7 @@ namespace OFXParser.Entities
 
         public DateTime Date { get; set; }
 
-        public double TransactionValue { get; set; }
+        public decimal TransactionValue { get; set; }
 
         public String Id { get; set; }
 

@@ -371,12 +371,12 @@ namespace OFXParser
             return bankId;
         }
 
-        private static double GetTransactionValue(string value, Extract extract)
+        private static decimal GetTransactionValue(string value, Extract extract)
         {
-            double returnValue = 0;
+            decimal returnValue = 0;
             try
             {
-                returnValue = Convert.ToDouble(value.Replace('.', ','));
+                returnValue = Convert.ToDecimal(value.Replace('.', ','));
             }
             catch (Exception ex)
             {
