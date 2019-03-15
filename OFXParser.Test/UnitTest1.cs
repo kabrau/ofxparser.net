@@ -10,7 +10,9 @@ namespace OFXParser.Test
         [TestMethod]
         public void TestMethod1()
         {
-            Extract extraxt = OFXParser.Parser.GetExtract("c:\\tempo\\exemplo02.ofx", new ParserSettings());
+            var file = @"C:\Users\marcelo\Downloads\ofx\EXTRATO_POR_PERIODO_010319_131842.ofx";
+
+            Extract extraxt = OFXParser.Parser.GetExtract(file, new ParserSettings());
         }
     }
 }

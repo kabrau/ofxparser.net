@@ -134,7 +134,7 @@ namespace OFXParser
                         switch (elementoSendoLido)
                         {
                             case "DTSERVER":
-                                cabecalho.ServerDate = ConvertOfxDateToDateTime(meuXml.Value, extrato);
+                                cabecalho.ServerDate = ConvertOfxDateToDateTime(meuXml.Value, extrato, elementoSendoLido);
                                 temCabecalho = true;
                                 break;
                             case "LANGUAGE":
@@ -146,10 +146,10 @@ namespace OFXParser
                                 temCabecalho = true;
                                 break;
                             case "DTSTART":
-                                extrato.InitialDate = ConvertOfxDateToDateTime(meuXml.Value, extrato);
+                                extrato.InitialDate = ConvertOfxDateToDateTime(meuXml.Value, extrato, elementoSendoLido);
                                 break;
                             case "DTEND":
-                                extrato.FinalDate = ConvertOfxDateToDateTime(meuXml.Value, extrato);
+                                extrato.FinalDate = ConvertOfxDateToDateTime(meuXml.Value, extrato, elementoSendoLido);
                                 break;
                             case "BANKID":
                                 conta.Bank = new Bank(GetBankId(meuXml.Value, extrato), "");
@@ -171,7 +171,7 @@ namespace OFXParser
                                 transacaoAtual.Type = meuXml.Value;
                                 break;
                             case "DTPOSTED":
-                                transacaoAtual.Date = ConvertOfxDateToDateTime(meuXml.Value, extrato);
+                                transacaoAtual.Date = ConvertOfxDateToDateTime(meuXml.Value, extrato, elementoSendoLido);
                                 break;
                             case "TRNAMT":
                                 transacaoAtual.TransactionValue = GetTransactionValue(meuXml.Value, extrato);
@@ -340,7 +340,7 @@ namespace OFXParser
         /// <param name="ofxDate"></param>
         /// <param name="extract"></param>
         /// <returns></returns>
-        private static DateTime ConvertOfxDateToDateTime(String ofxDate, Extract extract) {
+        private static DateTime ConvertOfxDateToDateTime(String ofxDate, Extract extract, string fieldName) {
             DateTime dateTimeReturned = DateTime.MinValue;
             try
             {
@@ -355,7 +355,7 @@ namespace OFXParser
             }
             catch (Exception ex)
             {
-                extract.ImportingErrors.Add(string.Format("Invalid datetime {0}", ofxDate));
+                extract.ImportingErrors.Add(string.Format("{0}: Invalid datetime {1}", fieldName, ofxDate));
             }
             return dateTimeReturned;
         }
